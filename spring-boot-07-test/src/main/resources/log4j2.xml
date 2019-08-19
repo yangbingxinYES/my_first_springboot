@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <Appenders>
+    	<!-- 控制台输出，格式，街配置多个（一般一个就够了） -->
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" pattern="[%-5p] %d %c - %m%n" />
+        </Console>
+
+		<!-- KeMuOneQuestionController的日志校验，可配置多个（针对不同业务的日志进行收集） -->
+        <File name="File" fileName="logs/question.log">
+            <PatternLayout pattern="%m%n" />
+        </File>
+        
+        <File name="ErrorFile" fileName="logs/error.log">
+        	<PatternLayout pattern="[%-5p] %d %c - %m%n" />
+        </File>
+    </Appenders>
+	
+    <Loggers>
+    	<!-- 在控制台打印info级别的系统日志 -->
+        <root level="info">
+            <AppenderRef ref="CONSOLE" additivity="false"/>
+        </root>
+        
+        <!-- 在控制台打印sql执行产生的debug级别以上的日志 -->
+        <Logger name="com.dao" level="debug" additivity="false">
+        	<AppenderRef ref="CONSOLE"></AppenderRef>
+        </Logger>
+        
+        <!-- 在控制台打印controller层info级别以上的日志 -->
+        <Logger name="com.controller" level="INFO" additivity="false">
+        	<AppenderRef ref="ErrorFile"></AppenderRef>
+        </Logger>
+        
+        <!-- 打印KeMuOneQuestionController的debug日志到日志文件中文件中 -->
+        <Logger name="com.utils.LoggerUtil" level="debug" additivity="false">
+            <AppenderRef ref="CONSOLE"></AppenderRef>
+            <AppenderRef ref="File"></AppenderRef>
+        </Logger>
+    </Loggers>
+</configuration>
