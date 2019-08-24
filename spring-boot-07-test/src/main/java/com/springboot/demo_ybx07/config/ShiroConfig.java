@@ -48,6 +48,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/swagger-resources/**", "anon");
         filterChainDefinitionMap.put("/v2/**", "anon");
         filterChainDefinitionMap.put("/webjars/**", "anon");
+        filterChainDefinitionMap.put("/springboot/**","anon");
         //放行druid
         filterChainDefinitionMap.put("/druid/**","anon");
         //放行登录接口
@@ -60,7 +61,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/authc/admin", "roles[admin]");
         filterChainDefinitionMap.put("/authc/renewable", "perms[Create,Update]");
         filterChainDefinitionMap.put("/authc/removable", "perms[Delete]");
-        filterChainDefinitionMap.put("/**", "authc");
+//        filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

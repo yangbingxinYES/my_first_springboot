@@ -56,6 +56,7 @@ public class MailServiceImpl implements MailService {
      */
     @Override
     public void sendSimpleMail(String to, String subject, String content) {
+       //简单邮件msg
         SimpleMailMessage message = new SimpleMailMessage();
         //收信人
         message.setTo(to);
@@ -82,6 +83,7 @@ public class MailServiceImpl implements MailService {
      */
     @Override
     public void sendHtmlMail(String to, String subject, String content) {
+        //复杂邮件msg
         MimeMessage message = mailSender.createMimeMessage();
 
         try {
